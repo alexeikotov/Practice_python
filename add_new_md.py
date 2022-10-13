@@ -61,7 +61,7 @@ def main():
     md_file = read_data('matrix.md','r')
     result = add_new_file_to_md(new_file, md_file)
 
-    write_data('new.md', result)
+    write_data('matrix.md', result)
 
 
 
