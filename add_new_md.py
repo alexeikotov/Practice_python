@@ -1,7 +1,7 @@
 INPUT_CODE_DELIMITER = '# ---end----'
 
-def read_data(file_name, x):
-    file = open(file_name, x)
+def read_data(file_name):
+    file = open(file_name)
     content = file.read()
     file.close()
     return content
@@ -57,8 +57,8 @@ def add_new_file_to_md(new_file, md_file):
     return result
 
 def main():
-    new_file = read_data('solution.py','r')
-    md_file = read_data('matrix.md','r')
+    new_file = read_data('solution.py')
+    md_file = read_data('matrix.md')
     result = add_new_file_to_md(new_file, md_file)
 
     write_data('matrix.md', result)
