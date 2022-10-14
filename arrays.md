@@ -2,7 +2,6 @@
 
 + [Squares of sorted array](#squares-of-sorted-array)
 + [Merge two sorted arrays](#merge-two-sorted-arrays)
-# ---
 
 
 ## Squares of sorted array
