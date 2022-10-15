@@ -1,4 +1,5 @@
 INPUT_CODE_DELIMITER = '# ---end----'
+INPUT_MD_DELIMITER = '<!---split here-->'
 
 def read_data(file_name):
     file = open(file_name)
@@ -7,9 +8,9 @@ def read_data(file_name):
     return content
 
 def prepare_md_file(md_file):
-    md_file = md_file.split('##')
+    md_file = md_file.split(INPUT_MD_DELIMITER)
     prev_titels = md_file[0]
-    prev_progs = '##' + "##".join(md_file[1:])
+    prev_progs = md_file[1].strip()
     return prev_titels, prev_progs
     
 def write_data(file_name, data):
@@ -52,8 +53,8 @@ def convert_data(data):
 def add_new_file_to_md(new_file, md_file):
     new_md_title, new_md_code = convert_data(new_file)
     prev_titles, prev_progs = prepare_md_file(md_file)
-    template = """{}\n{}\n\n{}\n\n{}"""
-    result = template.format(prev_titles.strip(), new_md_title.strip(),  prev_progs.strip(), new_md_code.strip())
+    template = """{}\n{}{}\n\n{}\n\n{}"""
+    result = template.format(prev_titles.strip(), new_md_title.strip(), INPUT_MD_DELIMITER,  prev_progs.strip(), new_md_code.strip())
     return result
 
 def main():
@@ -61,7 +62,7 @@ def main():
     md_file = read_data('matrix.md')
     result = add_new_file_to_md(new_file, md_file)
 
-    write_data('matrix.md', result)
+    write_data('new.md', result)
 
 
 
