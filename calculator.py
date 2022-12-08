@@ -33,9 +33,3 @@ class Complex:
     
     def mod (self):
         return (self.r**2+self.j**2)**0.5
-
-def main():
-    print(str(Complex(4,3).mod()))
-
-if __name__ == '__main__':
-    main()
