@@ -48,7 +48,7 @@ def convert_data(data):
     title, description = prepare_md_titles(titles)
     md_title, md_code = prepare_md_format_data(title, description, source_code)
     return md_title, md_code
-
+  
 def add_new_file_to_md(new_file, md_file):
     new_md_title, new_md_code = convert_data(new_file)
     prev_titles, prev_progs = prepare_md_file(md_file)
