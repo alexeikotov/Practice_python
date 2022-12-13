@@ -36,7 +36,6 @@ def prepare_md_format_data(title, description, source_code):
     
     md_title = """+ [{}](#{})\n""".format(title, md_link)
     md_code = """## {}
-
 {}
     
 ```python
@@ -53,16 +52,25 @@ def convert_data(data):
 def add_new_file_to_md(new_file, md_file):
     new_md_title, new_md_code = convert_data(new_file)
     prev_titles, prev_progs = prepare_md_file(md_file)
-    template = """{}\n{}{}\n\n{}\n\n{}"""
+    template = """{}\n{}\n{}\n\n{}\n\n{}"""
     result = template.format(prev_titles.strip(), new_md_title.strip(), INPUT_MD_DELIMITER,  prev_progs.strip(), new_md_code.strip())
+    return result
+
+def create_new_md(new_file):
+    new_md_title, new_md_code = convert_data(new_file)
+    template = """{}\n{}\n\n{}"""
+    result = template.format(new_md_title.strip(), INPUT_MD_DELIMITER,  new_md_code.strip())
     return result
 
 def main():
     new_file = read_data('solution.py')
-    md_file = read_data('matrix.md')
-    result = add_new_file_to_md(new_file, md_file)
-
-    write_data('new.md', result)
+    try:
+        md_file = read_data('new2.md')
+        result = add_new_file_to_md(new_file, md_file)
+        assert(len(md_file) != 0)
+    except:
+        result = create_new_md(new_file)
+    write_data('new3.md', result)
 
 
 
